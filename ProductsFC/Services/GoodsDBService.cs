@@ -27,7 +27,9 @@ public class GoodsDBService
     public async Task<List<Product>> GetItemsNotDelivered()
     {
         await Init();
-        return await _localDb.Table<Product>().Where(t => t.IsDelivered == 1).ToListAsync();
+        return await _localDb.Table<Product>().Where(t => t.IsDelivered == 1)
+            .OrderByDescending(t => t.OrderDate)
+            .ToListAsync();
     }
 
     public async Task<Product> GetItemAsync(int itemId)

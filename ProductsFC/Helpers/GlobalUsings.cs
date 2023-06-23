@@ -10,6 +10,8 @@ global using System.ComponentModel;
 global using System.Runtime.CompilerServices;
 global using System.Collections.ObjectModel;
 global using CommunityToolkit.Maui;
+global using System.Windows.Input;
+
 
 
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProductsFC.Views.NewProductPage"
+             xmlns:customControls="clr-namespace:ProductsFC.Views.CustomControls"
+             Title="NewProductPage">
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Добавление нового товара" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"
+                Margin="10, 20, 10, 0" FontFamily="OpenSans"/>
+
+            <Label Text="Наименование товара" FontSize="13" TextColor="{x:StaticResource Gray900}"
+                Margin="12, 20, 10, 0"/>
+            <customControls:CustomEntry Placeholder="Наименование товара" Margin="12, 0, 12, 0" Text="{Binding Name}"/>
+            <BoxView HeightRequest="1" Color="{x:StaticResource Gray400}" Margin="0"/>
+
+            <Label Text="Трек код" FontSize="13" TextColor="{x:StaticResource Gray900}"
+                Margin="12, 20, 10, 0"/>
+            <customControls:CustomEntry Placeholder="Трек код" Margin="12, 0, 12, 0" Text="{Binding TrackCode}"/>
+            <BoxView HeightRequest="1" Color="{x:StaticResource Gray400}" Margin="0"/>
+
+            <Label Text="Цена" FontSize="13" TextColor="{x:StaticResource Gray900}"
+                Margin="12, 20, 10, 0"/>
+            <customControls:CustomEntry Placeholder="Цена" Margin="12, 0, 12, 0" Text="{Binding Price}"/>
+            <BoxView HeightRequest="1" Color="{x:StaticResource Gray400}" Margin="0"/>
+
+            <Label Text="Вес" FontSize="13" TextColor="{x:StaticResource Gray900}"
+                Margin="12, 20, 10, 0"/>
+            <customControls:CustomEntry Placeholder="Вес" Margin="12, 0, 12, 0" Text="{Binding Weight}"/>
+            <BoxView HeightRequest="1" Color="{x:StaticResource Gray400}" Margin="0"/>
+
+            <Label Text="Дата заказа" FontSize="13" TextColor="{x:StaticResource Gray900}"
+                Margin="12, 20, 10, 0"/>
+            <DatePicker MinimumDate="{Binding MinDate}" MaximumDate="12/31/2030" Date="{Binding OrderDate}"/>
+            <BoxView HeightRequest="1" Color="{x:StaticResource Gray400}" Margin="0"/>
+
+            <Label Text="Доставлено" FontSize="13" TextColor="{x:StaticResource Gray900}"
+                Margin="12, 20, 10, 0"/>
+            <customControls:CustomEntry Placeholder="Доставлено" Margin="12, 0, 12, 0" Keyboard="Numeric" Text="{Binding IsDelivered}"/>
+            <BoxView HeightRequest="1" Color="{x:StaticResource Gray400}" Margin="0"/>
+
+            <Button Text="Сохранить" BackgroundColor="{x:StaticResource PrimaryRed}" Margin="15, 20, 15, 15"
+                Command="{Binding SaveProductCommand}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

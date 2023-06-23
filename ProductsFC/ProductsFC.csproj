@@ -53,6 +53,7 @@
 	  <None Remove="Resources\Images\next_icon.png" />
 	  <None Remove="Resources\Images\password_icon.png" />
 	  <None Remove="Resources\Images\photo_icon.png" />
+	  <None Remove="Resources\Images\plus_icon.png" />
 	  <None Remove="Resources\Images\search_icon.png" />
 	  <None Remove="Resources\Images\second_white_bell_icon.png" />
 	  <None Remove="Resources\Images\send_icon.png" />
@@ -74,6 +75,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\NewProductPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProductDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

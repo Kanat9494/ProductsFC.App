@@ -13,6 +13,10 @@
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{x:StaticResource Green45}"/>
     </ContentPage.Behaviors>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="plus_icon.png" Command="{Binding NewProductCommand}"/>
+    </ContentPage.ToolbarItems>
     
     <Shell.SearchHandler>
         <customControls:ProductSearchHandler Placeholder="Введите трек код товара"

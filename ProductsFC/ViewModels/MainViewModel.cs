@@ -1,4 +1,5 @@
-﻿namespace ProductsFC.ViewModels;
+﻿
+namespace ProductsFC.ViewModels;
 
 public class MainViewModel : BaseViewModel
 {
@@ -7,6 +8,7 @@ public class MainViewModel : BaseViewModel
         IsBusy = true;
         _goodsDbService = goodsDbService;
         Products = new ObservableCollection<Product>();
+        NewProductCommand = new Command(async () => await OnNewProduct());
 
         Task.Run(async () =>
         {
@@ -21,6 +23,7 @@ public class MainViewModel : BaseViewModel
     private readonly GoodsDBService _goodsDbService;
 
     public ObservableCollection<Product> Products { get; set; }
+    public ICommand NewProductCommand { get; }
 
     private async Task LoadProducts()
     {
@@ -31,4 +34,7 @@ public class MainViewModel : BaseViewModel
                 Products.Add(item);
         }
     }
+
+    private async Task OnNewProduct()
+        => await App.Current.MainPage.Navigation.PushModalAsync(new NewProductPage(_goodsDbService));
 }
