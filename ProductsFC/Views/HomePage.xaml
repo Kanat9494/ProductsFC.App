@@ -2,11 +2,58 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProductsFC.Views.HomePage"
-             Title="HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:viewModels="clr-namespace:ProductsFC.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:ProductsFC.Models"
+             xmlns:customControls="clr-namespace:ProductsFC.Views.CustomControls"
+             xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+             Title="HomePage"
+             Shell.BackgroundColor="{x:StaticResource Green45}">
+
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{x:StaticResource Green45}"/>
+    </ContentPage.Behaviors>
+    
+    <Shell.SearchHandler>
+        <customControls:ProductSearchHandler Placeholder="Введите трек код товара"
+            ShowsResults="true" DisplayMemberName="Name"/>
+    </Shell.SearchHandler>
+
+    <StackLayout BackgroundColor="{x:StaticResource White95}">
+        <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="{x:StaticResource Green45}"
+            Orientation="Horizontal">
+            
+        </StackLayout>
+        
+        <ActivityIndicator
+            IsRunning="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=IsBusy}"
+            IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=IsBusy}"
+            Color="{x:StaticResource Red60}"
+            Margin="0, 20, 0, 0"/>
+
+        <dxcv:DXCollectionView ItemsSource="{Binding Products}" VerticalOptions="FillAndExpand"
+            IsScrollBarVisible="False" Margin="0, 20, 0, 0">
+            <dxcv:DXCollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Product">
+                    <Border
+                        Margin="20, 0, 20, 20"
+                        BackgroundColor="White"
+                        StrokeShape="RoundRectangle 10"
+                        StrokeThickness="0"
+                        Padding="8">
+                        <StackLayout Spacing="5">
+                            <Label Text="{Binding OrderDate}" TextColor="{x:StaticResource Cyan100Accent}"
+                                HorizontalOptions="Center" FontAttributes="Bold" FontSize="12" FontFamily="OpenSansRegular"/>
+
+                            <Label Text="{Binding TrackCode}" FontAttributes="Bold" HorizontalOptions="Start"
+                                FontSize="15" FontFamily="OpenSansRegular"/>
+
+                            <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"
+                                FontSize="13" FontFamily="OpenSansRegular"/>
+                        </StackLayout>
+                    </Border>
+                </DataTemplate>
+            </dxcv:DXCollectionView.ItemTemplate>
+        </dxcv:DXCollectionView>
+    </StackLayout>
 </ContentPage>
