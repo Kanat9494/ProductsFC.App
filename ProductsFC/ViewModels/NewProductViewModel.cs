@@ -6,9 +6,11 @@ public class NewProductViewModel : BaseViewModel
     {
         SaveProductCommand = new Command(async () => await OnSaveProduct());
         _goodsDbService = goodsDbService;
+        MinDate = DateTime.Today;
     }
 
     private readonly GoodsDBService _goodsDbService;
+
     public ICommand SaveProductCommand { get; }
 
     #region Properties
@@ -24,20 +26,20 @@ public class NewProductViewModel : BaseViewModel
         get => _trackCode;
         set => SetProperty(ref _trackCode, value);
     }
-    private string _price;
-    public string Price
+    private double _price;
+    public double Price
     {
         get => _price;
         set => SetProperty(ref _price, value);
     }
-    private string _weight;
-    public string Weight
+    private double _weight;
+    public double Weight
     {
         get => _weight;
         set => SetProperty(ref _weight, value);
     }
-    private DateTime _orderDate;
-    public DateTime OrderDate
+    private string _orderDate;
+    public string OrderDate
     {
         get => _orderDate;
         set => SetProperty(ref _orderDate, value);
@@ -58,16 +60,16 @@ public class NewProductViewModel : BaseViewModel
 
     private async Task OnSaveProduct()
     {
-        var product = new Product
+        await _goodsDbService.SaveItemAsync(new Product
         {
+            //ProductId = _productId,
             Name = this.Name,
             TrackCode = this.TrackCode,
             Price = this.Price,
             Weight = this.Weight,
-            OrderDate = this.OrderDate,
+            OrderDate = OrderDate,
             IsDelivered = this.IsDelivered,
-        };
-
-        await _goodsDbService.SaveItemAsync(product);
+        });
+        await App.Current.MainPage.Navigation.PopModalAsync();
     }
 }

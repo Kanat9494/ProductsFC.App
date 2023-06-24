@@ -7,6 +7,13 @@ public partial class HomePage : ContentPage
 	{
 		InitializeComponent();
 
-		BindingContext = new MainViewModel(goodsService);
+		BindingContext = _viewModel = new MainViewModel(goodsService);
+	}
+
+	MainViewModel _viewModel;
+
+	private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		_viewModel.OnTextChanged();
 	}
 }

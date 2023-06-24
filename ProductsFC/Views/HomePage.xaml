@@ -7,36 +7,65 @@
              xmlns:models="clr-namespace:ProductsFC.Models"
              xmlns:customControls="clr-namespace:ProductsFC.Views.CustomControls"
              xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
-             Title="HomePage"
-             Shell.BackgroundColor="{x:StaticResource Green45}">
+             Title="Главная"
+             Shell.BackgroundColor="{x:StaticResource Green45}"
+             Shell.NavBarIsVisible="False">
 
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{x:StaticResource Green45}"/>
     </ContentPage.Behaviors>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="plus_icon.png" Command="{Binding NewProductCommand}"/>
-    </ContentPage.ToolbarItems>
-    
-    <Shell.SearchHandler>
-        <customControls:ProductSearchHandler Placeholder="Введите трек код товара"
-            ShowsResults="true" DisplayMemberName="Name"/>
-    </Shell.SearchHandler>
+    <StackLayout BackgroundColor="{x:StaticResource White95}"
+        Orientation="Vertical">
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{x:StaticResource Green45}"
+            Orientation="Horizontal"
+            x:Name="topContent">
+            <Border
+                StrokeShape="RoundRectangle 10"
+                Margin="10, 5, 5, 5"
+                StrokeThickness="0">
+                <SearchBar
+                    Placeholder="Поиск"
+                    PlaceholderColor="#4d4d33"
+                    FontSize="17"
+                    FontFamily="OpenSansRegular"
+                    TextChanged="SearchBar_TextChanged"
+                    Text="{Binding SearchText}"/>
+            </Border>
+ 
+            <Image 
+                Source="plus_icon.png"
+                HeightRequest="25"
+                WidthRequest="25"
+                VerticalOptions="Center"
+                HorizontalOptions="EndAndExpand"
+                Margin="10, 0, 20, 0">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=NewProductCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
 
-    <StackLayout BackgroundColor="{x:StaticResource White95}">
+
         <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="{x:StaticResource Green45}"
             Orientation="Horizontal">
-            
+            <Label Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=ProductsCount, StringFormat='Найдено товаров: {0}.'}" FontFamily="OpenSans" FontAttributes="Bold"
+                TextColor="White"
+                FontSize="18" Margin="10, 10, 10, 10"/>
         </StackLayout>
-        
+
         <ActivityIndicator
             IsRunning="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=IsBusy}"
             IsVisible="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=IsBusy}"
             Color="{x:StaticResource Red60}"
             Margin="0, 20, 0, 0"/>
 
-        <dxcv:DXCollectionView ItemsSource="{Binding Products}" VerticalOptions="FillAndExpand"
-            IsScrollBarVisible="False" Margin="0, 20, 0, 0">
+        <dxcv:DXCollectionView ItemsSource="{Binding Products, Mode=TwoWay}" VerticalOptions="FillAndExpand"
+            IsScrollBarVisible="False" Margin="0, 15, 0, 0" IsPullToRefreshEnabled="true" PullToRefreshCommand="{Binding RefreshProductsCommand}"
+            IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
             <dxcv:DXCollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Product">
                     <Border
@@ -50,11 +79,16 @@
                                 HorizontalOptions="Center" FontAttributes="Bold" FontSize="12" FontFamily="OpenSansRegular"/>
 
                             <Label Text="{Binding TrackCode}" FontAttributes="Bold" HorizontalOptions="Start"
-                                FontSize="15" FontFamily="OpenSansRegular"/>
+                                FontSize="15" FontFamily="OpenSansRegular" TextColor="Black"/>
 
                             <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"
-                                FontSize="13" FontFamily="OpenSansRegular"/>
+                                FontSize="13" FontFamily="OpenSansRegular" TextColor="Black"/>
                         </StackLayout>
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=ProductDetailsCommand}"
+                                CommandParameter="{Binding ProductId}"/>
+                        </Border.GestureRecognizers>
                     </Border>
                 </DataTemplate>
             </dxcv:DXCollectionView.ItemTemplate>

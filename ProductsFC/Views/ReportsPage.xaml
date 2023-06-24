@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProductsFC.Views.ReportsPage"
+             Title="Отчеты по заказам с Китая"
+             Shell.BackgroundColor="{x:StaticResource Green45}"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <StackLayout>
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="{x:StaticResource Red60}"
+                Margin="0, 20, 0, 0"/>
+            
+            <Label Text="{Binding ProductsCount, StringFormat='Количество заказов: {0}.'}"
+                FontSize="18" FontFamily="OpenSans" FontAttributes="Bold" Margin="10, 20, 10, 0"/>
+
+            <Label Text="{Binding ProductsWeight, StringFormat='Вес (всего): {0:F2}.'}"
+                FontSize="18" FontFamily="OpenSans" FontAttributes="Bold" Margin="10, 10, 10, 0"/>
+
+            <Label Text="{Binding ProductsPrice, StringFormat='Стоимость (всего): {0:F2}.'}"
+                FontSize="18" FontFamily="OpenSans" FontAttributes="Bold" Margin="10, 10, 10, 0"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

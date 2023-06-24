@@ -1,4 +1,6 @@
-﻿namespace ProductsFC.Views.CustomControls;
+﻿using ProductsFC.ViewModels;
+
+namespace ProductsFC.Views.CustomControls;
 
 internal class ProductSearchHandler : SearchHandler
 {
@@ -8,6 +10,7 @@ internal class ProductSearchHandler : SearchHandler
     protected override void OnQueryChanged(string oldValue, string newValue)
     {
         base.OnQueryChanged(oldValue, newValue);
+        Products = MainViewModel.ProductsListToSearch;
 
         if (string.IsNullOrEmpty(newValue))
         {
@@ -19,14 +22,16 @@ internal class ProductSearchHandler : SearchHandler
         }
     }
 
-    //protected override async void OnItemSelected(object item)
-    //{
-    //    base.OnItemSelected(item);
+    protected override async void OnItemSelected(object item)
+    {
+        base.OnItemSelected(item);
 
-    //    await Task.Delay(1000);
-    //    ShellNavigationState state = (App.Current.MainPage as Shell).CurrentState;
-    //    await Shell.Current.GoToAsync($"{nameof(ProductDetailPage)}?{ProductDetailViewModel.ProductId}={((Product)item).ProductId}");
-    //}
+        //await Task.Delay(1000);
+        ShellNavigationState state = (App.Current.MainPage as Shell).CurrentState;
+        //await Shell.Current.GoToAsync($"{nameof(ProductDetailsPage)}?{ProductDetailViewModel.ProductId}={((Product)item).ProductId}");
+        await Shell.Current.GoToAsync($"{nameof(ProductDetailsPage)}");
+
+    }
 }
 
     //string GetNavigationTarget()
