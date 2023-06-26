@@ -5,6 +5,7 @@ public class NewProductViewModel : BaseViewModel
     public NewProductViewModel(GoodsDBService goodsDbService)
     {
         SaveProductCommand = new Command(async () => await OnSaveProduct());
+        UploadPhotoCommand = new Command(async () => await OnUploadPhoto());
         _goodsDbService = goodsDbService;
         MinDate = DateTime.Today;
     }
@@ -12,6 +13,7 @@ public class NewProductViewModel : BaseViewModel
     private readonly GoodsDBService _goodsDbService;
 
     public ICommand SaveProductCommand { get; }
+    public ICommand UploadPhotoCommand { get; }
 
     #region Properties
     private string _name;
@@ -56,6 +58,12 @@ public class NewProductViewModel : BaseViewModel
         get => _minDate;
         set => SetProperty(ref _minDate, value);
     }
+    private string _imageUrl;
+    public string ImageUrl
+    {
+        get => _imageUrl;
+        set => SetProperty(ref _imageUrl, value);
+    }
     #endregion
 
     private async Task OnSaveProduct()
@@ -69,7 +77,37 @@ public class NewProductViewModel : BaseViewModel
             Weight = this.Weight,
             OrderDate = OrderDate,
             IsDelivered = this.IsDelivered,
+            ImageUrl = this.ImageUrl,
         });
         await App.Current.MainPage.Navigation.PopModalAsync();
+    }
+
+    private async Task OnUploadPhoto()
+    {
+        var result = await FilePicker.PickAsync(new PickOptions
+        {
+            PickerTitle = "Выберите изображение",
+            FileTypes = FilePickerFileType.Images,
+        });
+
+        if (result == null)
+            return;
+
+        string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        string imageFolderPath = Path.Combine(folderPath, "Images");
+        string imageName = "uploaded_image_" + DateTime.UtcNow.ToString("ddMMM_hhmmss") + ".jpg";
+
+        if (!Directory.Exists(imageFolderPath))
+            Directory.CreateDirectory(imageFolderPath);
+
+        var imagePath = Path.Combine(imageFolderPath, imageName);
+
+        using (var fileStream = await result.OpenReadAsync())
+        using (var destinationStream = File.Create(imagePath))
+        {
+            await fileStream.CopyToAsync(destinationStream);
+        }
+
+        ImageUrl = imagePath;
     }
 }

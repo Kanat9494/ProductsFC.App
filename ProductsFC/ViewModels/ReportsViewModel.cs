@@ -44,6 +44,8 @@ internal class ReportsViewModel : BaseViewModel
     private async Task GetReports()
     {
         var products = await _goodsDbService.GetItemsNotDelivered();
+        double? productsPrice = 0;
+        double? productsWeight = 0;
         if (products != null)
         {
             if (products.Count > 0)
@@ -52,9 +54,14 @@ internal class ReportsViewModel : BaseViewModel
 
                 for (int i = 0; i < products.Count; i++)
                 {
-                    ProductsWeight = ProductsWeight + (double)products[i].Weight;
-                    ProductsPrice = ProductsPrice + (double)products[i].Price;
+                    //ProductsWeight = ProductsWeight + (double)products[i].Weight;
+                    //ProductsPrice = ProductsPrice + (double)products[i].Price;
+                    productsPrice = productsPrice + products[i].Price;
+                    productsWeight = productsWeight + products[i].Weight;
                 }
+
+                ProductsWeight = (double)productsWeight;
+                ProductsPrice = (double)productsPrice;
             }
         }
 

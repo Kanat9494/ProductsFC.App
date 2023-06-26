@@ -41,6 +41,10 @@
             <customControls:CustomEntry Placeholder="Доставлено" Margin="12, 0, 12, 0" Keyboard="Numeric" Text="{Binding IsDelivered}"/>
             <BoxView HeightRequest="1" Color="{x:StaticResource Gray400}" Margin="0"/>
 
+            <Button Text="Загрузить фото" BackgroundColor="{x:StaticResource Green45}" Margin="15, 20, 15, 15"
+                Command="{Binding UploadPhotoCommand}"/>
+            <Image Source="{Binding ImageUrl}" HorizontalOptions="Fill" WidthRequest="400" Margin="20"/>
+
             <Button Text="Сохранить" BackgroundColor="{x:StaticResource PrimaryRed}" Margin="15, 20, 15, 15"
                 Command="{Binding SaveProductCommand}"/>
         </StackLayout>

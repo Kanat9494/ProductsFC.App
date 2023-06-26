@@ -10,4 +10,5 @@ public class Product
     public double? Weight { get; set; }
     public string OrderDate { get; set; }
     public byte IsDelivered { get; set; }
+    public string ImageUrl { get; set; }
 }
