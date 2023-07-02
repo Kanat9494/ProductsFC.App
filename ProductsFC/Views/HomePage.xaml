@@ -65,40 +65,43 @@
 
         <!--<Image Source="{Binding ImageUrl}" HeightRequest="150" WidthRequest="150"/>-->
 
-        <!--<dxcv:DXCollectionView ItemsSource="{Binding Products, Mode=TwoWay}" VerticalOptions="FillAndExpand"
+        <dxcv:DXCollectionView ItemsSource="{Binding Products, Mode=OneWay}" VerticalOptions="FillAndExpand"
             IsScrollBarVisible="False" Margin="0, 15, 0, 0" IsPullToRefreshEnabled="true" PullToRefreshCommand="{Binding RefreshProductsCommand}"
             IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
             <dxcv:DXCollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Product">
-                    <Border
-                        Margin="20, 0, 20, 20"
-                        BackgroundColor="White"
-                        StrokeShape="RoundRectangle 10"
-                        StrokeThickness="0"
-                        Padding="8">
-                        <StackLayout Spacing="5">
-                            <Label Text="{Binding OrderDate}" TextColor="{x:StaticResource Cyan100Accent}"
-                                HorizontalOptions="Center" FontAttributes="Bold" FontSize="12" FontFamily="OpenSansRegular"/>
+                    <Grid Margin="5" BackgroundColor="{x:StaticResource White}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
 
-                            <Label Text="{Binding TrackCode}" FontAttributes="Bold" HorizontalOptions="Start"
-                                FontSize="15" FontFamily="OpenSansRegular" TextColor="Black"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35*"/>
+                            <ColumnDefinition Width="65*"/>
+                        </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"
-                                FontSize="13" FontFamily="OpenSansRegular" TextColor="Black"/>
+                        <Image Grid.RowSpan="2" Source="{Binding ImageUrl}" Aspect="AspectFill"
+                            VerticalOptions="Start" Margin="10"/>
 
-                            <Image Source="{Binding ImageUrl}" HeightRequest="150" WidthRequest="150"/>
-                        </StackLayout>
+                        <Label Text="{Binding TrackCode}" FontAttributes="Bold" HorizontalOptions="Start"
+                            FontSize="15" FontFamily="OpenSansRegular" TextColor="Black" Grid.Column="1"
+                            Grid.Row="0" Margin="10" VerticalOptions="Start"/>
 
-                        <Border.GestureRecognizers>
+                        <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"
+                            FontSize="13" FontFamily="OpenSansRegular" TextColor="Black" Grid.Column="1"
+                            Grid.Row="1" VerticalOptions="End" Margin="10"/>
+
+                        <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=ProductDetailsCommand}"
                                 CommandParameter="{Binding ProductId}"/>
-                        </Border.GestureRecognizers>
-                    </Border>
+                        </Grid.GestureRecognizers>
+                    </Grid>
                 </DataTemplate>
             </dxcv:DXCollectionView.ItemTemplate>
-        </dxcv:DXCollectionView>-->
+        </dxcv:DXCollectionView>
 
-        <RefreshView
+        <!--<RefreshView
             IsRefreshing="{Binding IsRefreshing}"
             Command="{Binding RefreshProductsCommand}">
             <CollectionView ItemsSource="{Binding Products, Mode=TwoWay}" VerticalOptions="FillAndExpand" Margin="0, 15, 0, 0">
@@ -134,6 +137,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </RefreshView>
+        </RefreshView>-->
     </StackLayout>
 </ContentPage>
