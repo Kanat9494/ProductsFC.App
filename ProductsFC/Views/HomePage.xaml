@@ -65,43 +65,7 @@
 
         <!--<Image Source="{Binding ImageUrl}" HeightRequest="150" WidthRequest="150"/>-->
 
-        <dxcv:DXCollectionView ItemsSource="{Binding Products, Mode=OneWay}" VerticalOptions="FillAndExpand"
-            IsScrollBarVisible="False" Margin="0, 15, 0, 0" IsPullToRefreshEnabled="true" PullToRefreshCommand="{Binding RefreshProductsCommand}"
-            IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
-            <dxcv:DXCollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Product">
-                    <Grid Margin="5" BackgroundColor="{x:StaticResource White}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="100"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="35*"/>
-                            <ColumnDefinition Width="65*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Image Grid.RowSpan="2" Source="{Binding ImageUrl}" Aspect="AspectFill"
-                            VerticalOptions="Start" Margin="10"/>
-
-                        <Label Text="{Binding TrackCode}" FontAttributes="Bold" HorizontalOptions="Start"
-                            FontSize="15" FontFamily="OpenSansRegular" TextColor="Black" Grid.Column="1"
-                            Grid.Row="0" Margin="10" VerticalOptions="Start"/>
-
-                        <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"
-                            FontSize="13" FontFamily="OpenSansRegular" TextColor="Black" Grid.Column="1"
-                            Grid.Row="1" VerticalOptions="End" Margin="10"/>
-
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=ProductDetailsCommand}"
-                                CommandParameter="{Binding ProductId}"/>
-                        </Grid.GestureRecognizers>
-                    </Grid>
-                </DataTemplate>
-            </dxcv:DXCollectionView.ItemTemplate>
-        </dxcv:DXCollectionView>
-
-        <!--<RefreshView
+        <RefreshView
             IsRefreshing="{Binding IsRefreshing}"
             Command="{Binding RefreshProductsCommand}">
             <CollectionView ItemsSource="{Binding Products, Mode=TwoWay}" VerticalOptions="FillAndExpand" Margin="0, 15, 0, 0">
@@ -137,6 +101,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </RefreshView>-->
+        </RefreshView>
     </StackLayout>
 </ContentPage>
