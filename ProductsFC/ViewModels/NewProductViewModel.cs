@@ -28,14 +28,14 @@ public class NewProductViewModel : BaseViewModel
         get => _trackCode;
         set => SetProperty(ref _trackCode, value);
     }
-    private double _price;
-    public double Price
+    private double? _price;
+    public double? Price
     {
         get => _price;
         set => SetProperty(ref _price, value);
     }
-    private double _weight;
-    public double Weight
+    private double? _weight;
+    public double? Weight
     {
         get => _weight;
         set => SetProperty(ref _weight, value);
@@ -73,8 +73,8 @@ public class NewProductViewModel : BaseViewModel
             //ProductId = _productId,
             Name = this.Name,
             TrackCode = this.TrackCode,
-            Price = this.Price,
-            Weight = this.Weight,
+            Price = this.Price ?? 0,
+            Weight = this.Weight ?? 0,
             OrderDate = OrderDate,
             IsDelivered = this.IsDelivered,
             ImageUrl = this.ImageUrl,
