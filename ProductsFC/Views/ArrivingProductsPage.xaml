@@ -6,6 +6,7 @@
              xmlns:viewModels="clr-namespace:ProductsFC.ViewModels"
              Title="ArrivingProductsPage"
              Shell.BackgroundColor="{x:StaticResource Green40}"
+             Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
     <StackLayout CompressedLayout.IsHeadless="True">
         <ActivityIndicator
