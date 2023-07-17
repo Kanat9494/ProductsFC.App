@@ -113,34 +113,7 @@
                     </Border>
                 </StackLayout>
 
-                <Border
-                StrokeShape="RoundRectangle 10"
-                Padding="25"
-                Margin="10, 20, 10, 0"
-                StrokeThickness="0">
-                    <StackLayout
-                    Orientation="Horizontal">
-                        <Label
-                        Text="Пополнить"
-                        VerticalOptions="Center"
-                        FontSize="20"
-                        FontAttributes="Bold"
-                        FontFamily="RegularFont"/>
-
-                        <Border
-                        HorizontalOptions="EndAndExpand"
-                        HeightRequest="40"
-                        WidthRequest="40"
-                        StrokeThickness="0"
-                        BackgroundColor="{x:StaticResource White95}"
-                        Padding="10"
-                        StrokeShape="RoundRectangle 40">
-                            <Image
-                            Source="next_icon.png"
-                            />
-                        </Border>
-                    </StackLayout>
-                </Border>
+                
 
                 <Border
                 StrokeShape="RoundRectangle 10"
@@ -174,6 +147,43 @@
                         <TapGestureRecognizer
                             NumberOfTapsRequired="1"
                             Command="{Binding ReportsCommand}"
+                            >
+                        </TapGestureRecognizer>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border
+                StrokeShape="RoundRectangle 10"
+                Padding="25"
+                Margin="10, 20, 10, 0"
+                StrokeThickness="0">
+                    <StackLayout
+                    Orientation="Horizontal">
+                        <Label
+                        Text="Прибывшие товары"
+                        VerticalOptions="Center"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        FontFamily="RegularFont"/>
+
+                        <Border
+                        HorizontalOptions="EndAndExpand"
+                        HeightRequest="40"
+                        WidthRequest="40"
+                        StrokeThickness="0"
+                        BackgroundColor="{x:StaticResource White95}"
+                        Padding="10"
+                        StrokeShape="RoundRectangle 40">
+                            <Image
+                            Source="next_icon.png"
+                            />
+                        </Border>
+                    </StackLayout>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            NumberOfTapsRequired="1"
+                            Command="{Binding ArrivingProductsCommand}"
                             >
                         </TapGestureRecognizer>
                     </Border.GestureRecognizers>
