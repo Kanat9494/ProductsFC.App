@@ -49,6 +49,7 @@ internal class ArrivingProductsViewModel : BaseViewModel
 
     private async Task LoadArrivingProductsAsync()
     {
+        await Task.Delay(1000);
         var response = await _goodsDbService.GetArrivingItemsAsync();
 
         if (response != null)
