@@ -89,8 +89,8 @@
                             Grid.Row="0" Margin="10" VerticalOptions="Start"/>
 
                             <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"
-                            FontSize="13" FontFamily="OpenSansRegular" TextColor="Black" Grid.Column="1"
-                            Grid.Row="1" VerticalOptions="End" Margin="10"/>
+                                FontSize="13" FontFamily="OpenSansRegular" TextColor="Black" Grid.Column="1"
+                                Grid.Row="1" VerticalOptions="End" Margin="10"/>
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=ProductDetailsCommand}"
