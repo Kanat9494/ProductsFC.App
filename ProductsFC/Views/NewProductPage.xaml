@@ -4,7 +4,7 @@
              x:Class="ProductsFC.Views.NewProductPage"
              xmlns:customControls="clr-namespace:ProductsFC.Views.CustomControls"
              Title="Добавить новый заказ"
-             Shell.BackgroundColor="{x:StaticResource Green45}"
+             Shell.BackgroundColor="{x:StaticResource Green40}"
              Shell.TabBarIsVisible="False">
     <ScrollView>
         <StackLayout>
