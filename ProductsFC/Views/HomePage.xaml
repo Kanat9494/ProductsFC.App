@@ -74,6 +74,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="100"/>
+                                <RowDefinition Height="70"/>
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
@@ -91,6 +92,27 @@
                             <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"
                                 FontSize="13" FontFamily="OpenSansRegular" TextColor="Black" Grid.Column="1"
                                 Grid.Row="1" VerticalOptions="End" Margin="10"/>
+
+                            <HorizontalStackLayout Grid.Row="2" Grid.Column="1">
+                                <Border Padding="0" Margin="10" StrokeShape="RoundRectangle 10" Stroke="#525252" StrokeThickness="2">
+                                    <Label Text="Удалить" VerticalOptions="Center" Margin="10"/>
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=DeleteItemCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    </Border.GestureRecognizers>
+                                </Border>
+
+                                <Border Padding="0" Margin="10" StrokeShape="RoundRectangle 10" Stroke="#525252" StrokeThickness="2" BackgroundColor="{x:StaticResource Green40}">
+                                    <Label Text="Доставлено" VerticalOptions="Center" Margin="10"/>
+
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=ItemDeliveredCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    </Border.GestureRecognizers>
+                                </Border>
+                            </HorizontalStackLayout>
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=ProductDetailsCommand}"
