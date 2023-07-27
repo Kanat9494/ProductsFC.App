@@ -5,6 +5,9 @@ internal class AccountViewModel : BaseViewModel
     public AccountViewModel()
     {
         IsBusy = true;
+        ArrivingProductsCommand = new Command(async () => await OnArrivingProducts());
+
+
         RefreshAccountInfo = new Command(() =>
         {
             Task.Run(async () =>
@@ -28,6 +31,8 @@ internal class AccountViewModel : BaseViewModel
     public ICommand RefreshAccountInfo { get; set; }
     public ICommand ExitCommand { get; set; }
     public ICommand ReportsCommand { get; }
+    public ICommand ArrivingProductsCommand { get; }
+
 
     private bool _isRefreshing;
     public bool IsRefreshing
@@ -80,4 +85,7 @@ internal class AccountViewModel : BaseViewModel
 
     private async Task OnReports()
         => await Shell.Current.GoToAsync("ReportsPage");
+
+    async Task OnArrivingProducts()
+        => await Shell.Current.GoToAsync("ArrivingProductsPage");
 }

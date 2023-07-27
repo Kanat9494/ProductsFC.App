@@ -19,6 +19,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<HomePage>();
         builder.Services.AddTransient<NewProductPage>();
         builder.Services.AddTransient<ReportsPage>();
+		builder.Services.AddTransient<ArrivingProductsPage>();
         builder.Services.AddSingleton<GoodsDBService>();
 
 #if DEBUG

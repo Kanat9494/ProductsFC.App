@@ -14,7 +14,7 @@
         <toolkit:StatusBarBehavior StatusBarColor="{x:StaticResource Green40}"/>
     </ContentPage.Behaviors>
 
-    <StackLayout BackgroundColor="{x:StaticResource White95}"
+    <StackLayout BackgroundColor="{x:StaticResource White95}" CompressedLayout.IsHeadless="True"
         Orientation="Vertical">
         <StackLayout
             HorizontalOptions="FillAndExpand"
@@ -67,7 +67,7 @@
         <RefreshView
             IsRefreshing="{Binding IsRefreshing}"
             Command="{Binding RefreshProductsCommand}">
-            <CollectionView ItemsSource="{Binding Products, Mode=TwoWay}" VerticalOptions="FillAndExpand" Margin="0, 15, 0, 0">
+            <CollectionView ItemsSource="{Binding Products, Mode=OneTime}" VerticalOptions="FillAndExpand" Margin="0, 15, 0, 0">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Product">
                         <Grid Margin="5" BackgroundColor="{x:StaticResource White}">

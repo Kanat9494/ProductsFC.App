@@ -32,6 +32,13 @@ public class GoodsDBService
             .ToListAsync();
     }
 
+    public async Task<List<Product>> GetArrivingItemsAsync()
+    {
+        await Init();
+        return await _localDb.Table<Product>().Where(t => t.IsDelivered == 1)
+            .OrderByDescending(t => t.ProductId).ToListAsync();
+    }
+
     public async Task<Product> GetItemAsync(int itemId)
     {
         await Init();
