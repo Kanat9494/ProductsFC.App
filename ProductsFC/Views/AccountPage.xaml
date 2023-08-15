@@ -60,7 +60,7 @@
                 WidthRequest="70"/>
 
                 <StackLayout
-                Margin="10, 10, 10, 0">
+                Margin="10, 0, 10, 0">
                     <Border
                     StrokeShape="RoundRectangle 10"
                     StrokeThickness="0"
@@ -187,6 +187,36 @@
                             >
                         </TapGestureRecognizer>
                     </Border.GestureRecognizers>
+                </Border>
+
+                <Border
+StrokeShape="RoundRectangle 10"
+Padding="25"
+Margin="10, 20, 10, 10"
+StrokeThickness="0">
+                    <StackLayout
+    Orientation="Horizontal">
+                        <Label
+        Text="Версия 1.1"
+        VerticalOptions="Center"
+        FontSize="20"
+        FontAttributes="Bold"
+        FontFamily="RegularFont"/>
+
+                        <Border
+        HorizontalOptions="EndAndExpand"
+        HeightRequest="40"
+        WidthRequest="40"
+        StrokeThickness="0"
+        BackgroundColor="{x:StaticResource White95}"
+        Padding="10"
+        StrokeShape="RoundRectangle 40">
+                            <Image
+            Source="next_icon.png"
+            />
+                        </Border>
+                    </StackLayout>
+
                 </Border>
 
                 <Border

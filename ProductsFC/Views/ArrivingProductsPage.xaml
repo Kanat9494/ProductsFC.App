@@ -9,6 +9,35 @@
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
     <StackLayout CompressedLayout.IsHeadless="True">
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{x:StaticResource Green40}"
+            Orientation="Horizontal"
+            x:Name="topContent">
+            <Border
+                StrokeShape="RoundRectangle 10"
+                Margin="10, 5, 5, 5"
+                StrokeThickness="0">
+                <SearchBar
+            Placeholder="Поиск"
+            PlaceholderColor="#4d4d33"
+            FontSize="17"
+            FontFamily="OpenSansRegular"
+            TextChanged="SearchBar_TextChanged"
+            Text="{Binding SearchText}"/>
+            </Border>
+
+            
+        </StackLayout>
+
+
+        <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="{x:StaticResource Green40}"
+            Orientation="Horizontal">
+            <Label Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ArrivingProductsViewModel}}, Path=ProductsCount, StringFormat='Найдено товаров: {0}.'}" FontFamily="OpenSans" FontAttributes="Bold"
+                TextColor="White"
+                FontSize="18" Margin="10, 10, 10, 10"/>
+        </StackLayout>
+
         <ActivityIndicator
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}"
@@ -27,6 +56,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="100"/>
+                                <RowDefinition Height="70"/>
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
@@ -44,6 +74,18 @@
                             <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"
                             FontSize="13" FontFamily="OpenSansRegular" TextColor="Black" Grid.Column="1"
                             Grid.Row="1" VerticalOptions="End" Margin="10"/>
+
+                            <Border Padding="0" Margin="10" StrokeShape="RoundRectangle 10" Stroke="#525252" StrokeThickness="2" BackgroundColor="{x:StaticResource Red50}"
+                                Grid.Row="2" Grid.Column="1">
+                                <Label Text="Удалить" VerticalOptions="Center" Margin="20, 0, 0, 0" TextColor="White" WidthRequest="80" />
+
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ArrivingProductsViewModel}}, Path=DeleteItemCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Border.GestureRecognizers>
+                            </Border>
+
+                                
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ArrivingProductsViewModel}}, Path=ProductDetailsCommand}"

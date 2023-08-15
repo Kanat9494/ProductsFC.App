@@ -7,6 +7,13 @@ public partial class ArrivingProductsPage : ContentPage
 	{
 		InitializeComponent();
 
-		BindingContext = new ArrivingProductsViewModel(goodsDbService);
+		BindingContext = _viewModel = new ArrivingProductsViewModel(goodsDbService);
 	}
+
+	ArrivingProductsViewModel _viewModel;
+
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        _viewModel.OnTextChanged();
+    }
 }
