@@ -197,7 +197,7 @@ StrokeThickness="0">
                     <StackLayout
     Orientation="Horizontal">
                         <Label
-        Text="Версия 1.1"
+        Text="Версия 1.2"
         VerticalOptions="Center"
         FontSize="20"
         FontAttributes="Bold"
