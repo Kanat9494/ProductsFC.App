@@ -193,8 +193,9 @@
 StrokeShape="RoundRectangle 10"
 Padding="25"
 Margin="10, 20, 10, 10"
-StrokeThickness="0">
-                    <StackLayout
+StrokeThickness="0"
+                    x:Name="versionBorder">
+                    <!--<StackLayout
     Orientation="Horizontal">
                         <Label
         Text="Версия 1.3"
@@ -216,7 +217,7 @@ StrokeThickness="0">
             />
                         </Border>
                         
-                    </StackLayout>
+                    </StackLayout>-->
 
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer
