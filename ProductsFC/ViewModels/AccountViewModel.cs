@@ -19,6 +19,7 @@ internal class AccountViewModel : BaseViewModel
             });
         });
         ExitCommand = new Command(OnExit);
+        TestCommand = new Command(async () => await OnTest());
         ReportsCommand = new Command(async () => await OnReports());
 
         Task.Run(async () =>
@@ -32,6 +33,7 @@ internal class AccountViewModel : BaseViewModel
     public ICommand ExitCommand { get; set; }
     public ICommand ReportsCommand { get; }
     public ICommand ArrivingProductsCommand { get; }
+    public ICommand TestCommand { get; }
 
 
     private bool _isRefreshing;
@@ -88,4 +90,7 @@ internal class AccountViewModel : BaseViewModel
 
     async Task OnArrivingProducts()
         => await Shell.Current.GoToAsync("ArrivingProductsPage");
+
+    private async Task OnTest()
+        => await Shell.Current.DisplayAlert("Test", "Test", "Ok");
 }

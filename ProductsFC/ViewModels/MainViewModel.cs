@@ -134,6 +134,8 @@ public class MainViewModel : BaseViewModel
         Products.Remove(product);
     }
 
+
+
     private async Task OnItemDelivered(Product product)
     {
         product.IsDelivered = 1;
